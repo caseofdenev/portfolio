@@ -34,7 +34,7 @@ const CASES = [
     indication: 'Prostate Biopsy',
     title: 'Re-architected an AI-to-Clinical Translation Architecture',
     subtitle: 'Cancer Diagnosis Decision Support SaMD (Prostate)',
-    images: ['deepdx-ai-result.png'],
+    images: ['deepdx-viewer.png', 'deepdx-ai-result.png'],
     problem: [
       'Clinical measurement standards were not embedded in the AI workflow.',
       'AI outputs were disconnected from diagnostic documentation, requiring manual bridging by pathologists.',
