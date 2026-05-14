@@ -13,6 +13,13 @@ const OVERVIEW = [
   { label: 'Period', value: 'Jul. 2021 – Jan. 2025 (3y6m)' },
 ]
 
+const WORKFLOW_STEPS = [
+  { num: '1', label: 'Tissue Biopsy &\nSlide Preparation' },
+  { num: '2', label: 'Whole-Slide\nScanning' },
+  { num: '3', label: 'Digital Slide\nReview' },
+  { num: '4', label: 'AI-Assisted\nAnalysis', highlight: true },
+  { num: '5', label: 'Pathologist Confirmation\n& Report Generation', highlight: true },
+]
 
 const WORKFLOW_POINTS = [
   'Analyzes histopathology images to precisely detect malignant cells within tissue specimens.',
@@ -27,7 +34,7 @@ const CASES = [
     indication: 'Prostate Biopsy',
     title: 'Re-architected an AI-to-Clinical Translation Architecture',
     subtitle: 'Cancer Diagnosis Decision Support SaMD (Prostate)',
-    image: 'ppt-11.svg',
+    images: ['deepdx-ai-result.png'],
     problem: [
       'Clinical measurement standards were not embedded in the AI workflow.',
       'AI outputs were disconnected from diagnostic documentation, requiring manual bridging by pathologists.',
@@ -46,7 +53,7 @@ const CASES = [
     indication: 'Prostate · Enterprise Deployment',
     title: 'Operationalized Enterprise AI Reporting in a European Diagnostic Organization',
     subtitle: 'Cancer Diagnosis Decision Support SaMD (Prostate)',
-    image: 'ppt-12.svg',
+    images: ['deepdx-worklist.png', 'deepdx-eu-report.png'],
     problem: [
       'AI reporting had to align with institutional documentation standards not reflected in the base product.',
       'Manual report synthesis created significant workflow bottlenecks for pathologists.',
@@ -68,7 +75,7 @@ const CASES = [
     indication: 'Frozen Section · IHC Ki-67',
     title: 'Expanded Clinical Indications to IHC Quantification and Frozen Section',
     subtitle: 'Expanded AI SaMD Portfolio Across Diagnostic Indications',
-    image: 'ppt-13.svg',
+    images: ['deepdx-ihc-ki67.png', 'deepdx-frozen.png'],
     problem: [
       'Required to translate increasingly complex AI outputs — continuous Ki-67 scores and intraoperative frozen section findings — into regulated SaMD processes.',
       'Each indication had distinct clinical workflows, urgency levels, and reporting conventions.',
@@ -88,7 +95,7 @@ const CASES = [
     indication: 'Cross-functional · Governance',
     title: 'Aligned Engineering Velocity with Executive Oversight and Cross-Functional Readiness',
     subtitle: 'Established Release Control and Risk Governance',
-    image: 'ppt-14.svg',
+    images: ['deepdx-release-prep.png', 'deepdx-release-timeline.png'],
     problem: [
       'A release proceeded without explicit approval — exposing gaps in sign-off processes.',
       'Rapid release cycles increased misalignment between engineering and BD teams.',
@@ -106,6 +113,42 @@ const CASES = [
 ]
 
 /* ─── Sub-components ──────────────────────────────────── */
+
+function CaseImages({ images, alt }) {
+  if (!images || images.length === 0) return null
+
+  if (images.length === 1) {
+    return (
+      <div className={styles.caseImages}>
+        <div className={styles.caseImgWrap}>
+          <img
+            src={`./images/deepbio/${images[0]}`}
+            alt={alt}
+            className={styles.caseImg}
+            loading="lazy"
+            onError={(e) => { e.target.closest('div').style.display = 'none' }}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className={`${styles.caseImages} ${styles.caseImagesGrid}`}>
+      {images.map((src, i) => (
+        <div key={i} className={styles.caseImgWrap}>
+          <img
+            src={`./images/deepbio/${src}`}
+            alt={`${alt} — ${i + 1}`}
+            className={styles.caseImg}
+            loading="lazy"
+            onError={(e) => { e.target.closest('div').style.display = 'none' }}
+          />
+        </div>
+      ))}
+    </div>
+  )
+}
 
 function PSO({ problem, solution, outcome }) {
   return (
@@ -176,14 +219,18 @@ export default function DeepBio() {
               <h2 className={styles.sectionTitle}>Clinical Workflow Context in Histopathology</h2>
             </div>
 
-            {/* Flow diagram — illustration from slide */}
-            <div className={styles.workflowImage}>
-              <img
-                src="./images/deepbio/ppt-10.svg"
-                alt="Clinical Workflow Context in Histopathology"
-                className={styles.workflowImg}
-                loading="lazy"
-              />
+            <div className={styles.flowDiagram}>
+              {WORKFLOW_STEPS.map((step, i) => (
+                <div key={step.num} className={styles.flowStep}>
+                  <div className={`${styles.flowNode} ${step.highlight ? styles.flowNodeHighlight : ''}`}>
+                    <span className={styles.flowNum}>{step.num}</span>
+                  </div>
+                  <p className={styles.flowLabel}>{step.label}</p>
+                  {i < WORKFLOW_STEPS.length - 1 && (
+                    <div className={styles.flowArrow}>→</div>
+                  )}
+                </div>
+              ))}
             </div>
 
             <div className={styles.workflowStatement}>
@@ -211,7 +258,6 @@ export default function DeepBio() {
             className={`${styles.caseSection} ${i % 2 === 1 ? styles.caseSectionAlt : ''}`}
           >
             <div className="container">
-              {/* Case header */}
               <div className={styles.caseHeader}>
                 <div className={styles.caseHeaderLeft}>
                   <span className={styles.indicationTag}>{c.indication}</span>
@@ -226,18 +272,8 @@ export default function DeepBio() {
                 )}
               </div>
 
-              {/* Image */}
-              <div className={styles.caseImage}>
-                <img
-                  src={`./images/deepbio/${c.image}`}
-                  alt={c.subtitle}
-                  className={styles.caseImg}
-                  loading="lazy"
-                  onError={(e) => { e.target.style.display = 'none' }}
-                />
-              </div>
+              <CaseImages images={c.images} alt={c.subtitle} />
 
-              {/* Problem / Solution / Outcome */}
               <PSO
                 problem={c.problem}
                 solution={c.solution}
