@@ -2,14 +2,13 @@
   background: var(--bg-subtle);
 }
 
-/* ── Section header ── */
+/* ── Header ── */
 .header {
   margin-bottom: var(--space-8);
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(20px);
   transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
 }
-
 .header.visible {
   opacity: 1;
   transform: translateY(0);
@@ -35,132 +34,184 @@
   line-height: 1;
 }
 
-/* ── Content layout ── */
+/* ── Content ── */
 .content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(24px);
   transition: opacity 0.6s var(--ease) 0.15s, transform 0.6s var(--ease) 0.15s;
 }
-
 .content.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── Intro card ── */
-.introCard {
+/* ── Block ── */
+.block {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: var(--space-7) var(--space-6);
+  overflow: hidden;
 }
 
-.introText {
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--text-2);
-  margin-bottom: var(--space-5);
-}
-
-.introText strong {
-  color: var(--text-1);
-  font-weight: 600;
-}
-
-/* ── Credential timeline ── */
-.timeline {
-  border-top: 1px solid var(--border);
-  padding-top: var(--space-5);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.timelineItem {
-  display: grid;
-  grid-template-columns: 76px 1fr;
-  gap: var(--space-4);
-  align-items: start;
-}
-
-.timelineYear {
+.blockTitle {
   font-family: var(--font-heading);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--blue);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-subtle);
+}
+
+/* ── Education ── */
+.eduList {
+  display: flex;
+  flex-direction: column;
+}
+
+.eduItem {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 0;
+  padding: var(--space-6) var(--space-7);
+  border-bottom: 1px solid var(--border);
+}
+.eduItem:last-child {
+  border-bottom: none;
+}
+
+.eduLeft {
+  display: flex;
+  align-items: flex-start;
   padding-top: 2px;
 }
 
-.timelineLabel {
+.degree {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--blue);
+  letter-spacing: 0.02em;
+}
+
+.eduRight {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.eduField {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+  line-height: 1.3;
+}
+
+.eduSub {
+  font-family: var(--font-body);
   font-size: 13px;
+  color: var(--text-2);
+}
+
+.eduMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.school {
+  font-family: var(--font-heading);
+  font-size: 12px;
   font-weight: 600;
+  color: var(--text-2);
+}
+
+.metaDot {
+  color: var(--border);
+  font-size: 11px;
+}
+
+.period {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.eduNote {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-3);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* ── Credentials (cert + training) ── */
+.credList {
+  display: flex;
+  flex-direction: column;
+}
+
+.credItem {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 0;
+  padding: var(--space-5) var(--space-7);
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.credItem:last-child {
+  border-bottom: none;
+}
+
+.credYear {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 0.04em;
+  padding-top: 2px;
+}
+
+.credBody {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.credTitle {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.01em;
   color: var(--text-1);
   line-height: 1.4;
 }
 
-.timelineNote {
+.credTitleKo {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+.credIssuer {
+  font-family: var(--font-body);
   font-size: 12px;
   color: var(--text-3);
-  margin-top: 2px;
-}
-
-/* ── Competency cards ── */
-.compCol {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-}
-
-.compCard {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-}
-
-.compArea {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -0.01em;
-  color: var(--text-1);
-  margin-bottom: var(--space-4);
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--border);
-}
-
-.compList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.compItem {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.5;
-}
-
-.compBullet {
-  flex-shrink: 0;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--blue);
-  opacity: 0.5;
 }
 
 /* ── Responsive ── */
-@media (max-width: 900px) {
-  .content {
-    grid-template-columns: 1fr;
+@media (max-width: 640px) {
+  .eduItem,
+  .credItem {
+    grid-template-columns: 48px 1fr;
+    padding: var(--space-5);
   }
 }

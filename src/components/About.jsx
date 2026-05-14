@@ -17,29 +17,48 @@ function useFadeIn(threshold = 0.1) {
   return [ref, visible]
 }
 
-const COMPETENCIES = [
+const EDUCATION = [
   {
-    area: 'SaMD Product Management',
-    items: ['Regulatory strategy (MFDS, CE)', 'SLO & reliability governance', 'MVP scoping & roadmap', 'Clinical workflow integration'],
+    degree: 'M.S.',
+    field: 'Biomedical Engineering',
+    sub: 'Human Factors Engineering',
+    school: 'UNIST',
+    period: 'Sep 2019 – Aug 2021',
+    note: 'supervised by Prof. Dooyoung Jung, MD, PhD',
   },
   {
-    area: 'AI & Clinical Domain',
-    items: ['Digital pathology (WSI, IHC)', 'Orthopedic imaging (X-ray, OA)', 'AI-to-Report workflow design', 'Model output UX translation'],
-  },
-  {
-    area: 'Human Factors & UX',
-    items: ['Usability testing in clinical settings', 'Task analysis & workflow mapping', 'Interaction design for clinicians', 'iF Design Award (2020 & 2024)'],
+    degree: 'B.S.',
+    field: 'Integrated Industrial Design Engineering',
+    sub: 'Affective & Human Factors Engineering',
+    school: 'UNIST',
+    period: 'Mar 2011 – Feb 2017',
+    note: '',
   },
 ]
 
-const CREDENTIALS = [
-  { year: '2025', label: 'Product Manager, CONNECTEVE Inc.', note: 'Knee OA Diagnosis SaMD' },
-  { year: '2021–25', label: 'PM · UX Designer, DeepBio Inc.', note: 'Cancer Diagnosis AI SaMD' },
-  { year: '2021', label: 'M.S. Biomedical Eng. (Human Factors)', note: 'UNIST · Prof. Dooyoung Jung, MD, PhD' },
-  { year: '2017', label: 'B.S. Industrial Design Eng. & Human Factors', note: 'UNIST' },
-  { year: '2023', label: 'Medical Device RA Specialist Training', note: 'NIDS, Korea' },
-  { year: '2023', label: 'SaMD GMP Essentials', note: 'KTL, Korea' },
-  { year: '2018', label: 'Certified Ergonomics Engineer', note: 'HRD, Korea' },
+const CERTIFICATIONS = [
+  {
+    year: '2018',
+    title: 'Certified Ergonomics Engineer',
+    title_ko: '인간공학기사',
+    issuer: 'HRD Korea',
+    type: 'cert',
+  },
+]
+
+const TRAININGS = [
+  {
+    year: '2023',
+    title: 'Medical Device RA Specialist Training',
+    issuer: 'NIDS (National Institute of Medical Device Safety Information)',
+    type: 'training',
+  },
+  {
+    year: '2023',
+    title: 'SaMD GMP Essentials',
+    issuer: 'KTL (Korea Testing Laboratory)',
+    type: 'training',
+  },
 ]
 
 export default function About() {
@@ -49,64 +68,74 @@ export default function About() {
   return (
     <section id="about" className={`section grid-bg ${styles.section}`}>
       <div className="container">
+
         {/* Header */}
-        <div
-          ref={headerRef}
-          className={`${styles.header} ${headerVisible ? styles.visible : ''}`}
-        >
-          <span className={styles.sectionLabel}>About</span>
-          <h2 className={styles.sectionTitle}>Background</h2>
+        <div ref={headerRef} className={`${styles.header} ${headerVisible ? styles.visible : ''}`}>
+          <span className={styles.sectionLabel}>Background</span>
+          <h2 className={styles.sectionTitle}>Academic & Credentials</h2>
         </div>
 
-        <div
-          ref={contentRef}
-          className={`${styles.content} ${contentVisible ? styles.visible : ''}`}
-        >
-          {/* Intro column */}
-          <div className={styles.introCol}>
-            <div className={styles.introCard}>
-              <p className={styles.introText}>
-                I design and ship <strong>AI-powered Software as a Medical Device</strong> that
-                clinicians actually use — bridging deep clinical workflow knowledge,
-                human factors engineering, and regulatory-aware product thinking.
-              </p>
-              <p className={styles.introText}>
-                With a background spanning industrial design, human factors, and biomedical
-                engineering, I bring a systems perspective to complex healthcare AI products —
-                from model output to patient outcome.
-              </p>
+        <div ref={contentRef} className={`${styles.content} ${contentVisible ? styles.visible : ''}`}>
 
-              {/* Credential timeline */}
-              <div className={styles.timeline}>
-                {CREDENTIALS.map(({ year, label, note }) => (
-                  <div key={label} className={styles.timelineItem}>
-                    <span className={styles.timelineYear}>{year}</span>
-                    <div className={styles.timelineBody}>
-                      <p className={styles.timelineLabel}>{label}</p>
-                      <p className={styles.timelineNote}>{note}</p>
-                    </div>
+          {/* Education */}
+          <div className={styles.block}>
+            <h3 className={styles.blockTitle}>Education</h3>
+            <div className={styles.eduList}>
+              {EDUCATION.map(ed => (
+                <div key={ed.field} className={styles.eduItem}>
+                  <div className={styles.eduLeft}>
+                    <span className={styles.degree}>{ed.degree}</span>
                   </div>
-                ))}
-              </div>
+                  <div className={styles.eduRight}>
+                    <p className={styles.eduField}>{ed.field}</p>
+                    <p className={styles.eduSub}>{ed.sub}</p>
+                    <p className={styles.eduMeta}>
+                      <span className={styles.school}>{ed.school}</span>
+                      <span className={styles.metaDot}>·</span>
+                      <span className={styles.period}>{ed.period}</span>
+                    </p>
+                    {ed.note && <p className={styles.eduNote}>{ed.note}</p>}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Competencies column */}
-          <div className={styles.compCol}>
-            {COMPETENCIES.map(({ area, items }) => (
-              <div key={area} className={styles.compCard}>
-                <h3 className={styles.compArea}>{area}</h3>
-                <ul className={styles.compList}>
-                  {items.map(item => (
-                    <li key={item} className={styles.compItem}>
-                      <span className={styles.compBullet} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          {/* Certification */}
+          <div className={styles.block}>
+            <h3 className={styles.blockTitle}>Certification</h3>
+            <div className={styles.credList}>
+              {CERTIFICATIONS.map(c => (
+                <div key={c.title} className={styles.credItem}>
+                  <span className={styles.credYear}>{c.year}</span>
+                  <div className={styles.credBody}>
+                    <p className={styles.credTitle}>
+                      {c.title}
+                      {c.title_ko && <span className={styles.credTitleKo}> · {c.title_ko}</span>}
+                    </p>
+                    <p className={styles.credIssuer}>{c.issuer}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Training */}
+          <div className={styles.block}>
+            <h3 className={styles.blockTitle}>Training</h3>
+            <div className={styles.credList}>
+              {TRAININGS.map(t => (
+                <div key={t.title} className={styles.credItem}>
+                  <span className={styles.credYear}>{t.year}</span>
+                  <div className={styles.credBody}>
+                    <p className={styles.credTitle}>{t.title}</p>
+                    <p className={styles.credIssuer}>{t.issuer}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

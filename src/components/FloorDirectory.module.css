@@ -1,0 +1,381 @@
+/* ── Section ── */
+.section {
+  background: var(--bg);
+}
+
+/* ── Header ── */
+.header {
+  margin-bottom: var(--space-8);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sectionLabel {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: var(--space-3);
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing: -0.03em;
+  color: var(--text-1);
+  line-height: 1;
+  margin-bottom: var(--space-4);
+}
+
+.sectionSub {
+  font-size: 15px;
+  color: var(--text-3);
+  letter-spacing: 0.01em;
+}
+
+/* ── Board ── */
+.board {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease) 0.15s, transform 0.6s var(--ease) 0.15s;
+}
+.board.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Building header ── */
+.buildingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: var(--text-1);
+  color: white;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.buildingLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.buildingIcon {
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.buildingMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.03em;
+}
+
+/* ── Floors container ── */
+.floors {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Floor row
+   Columns: [floorNum 56px] [periodCol 104px] [divider 1px] [content 1fr] [tags 148px] [cta 44px]
+── */
+.floorRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 104px 1px 1fr 148px 44px;
+  align-items: stretch;
+  min-height: 84px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s var(--ease);
+  overflow: hidden;
+}
+.floorRow:last-child {
+  border-bottom: none;
+}
+.floorRow.featuredRow {
+  min-height: 96px;
+}
+.floorRow.basementRow {
+  background: var(--bg-subtle);
+}
+.floorRow.active {
+  background: color-mix(in srgb, var(--accent) 5%, white);
+}
+.floorRow[role='link'] {
+  cursor: pointer;
+}
+
+/* ── Floor number cell ── */
+.floorNum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  border-right: 1px solid var(--border);
+  transition: background 0.2s var(--ease);
+  flex-shrink: 0;
+}
+.floorRow.active .floorNum {
+  background: var(--accent);
+}
+
+.floorNumText {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+  transition: color 0.2s var(--ease);
+}
+.floorRow.active .floorNumText {
+  color: white;
+}
+
+/* ── Period column ── */
+.periodCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 16px;
+  gap: 4px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.yearText {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  white-space: nowrap;
+  line-height: 1.2;
+  transition: color 0.2s var(--ease);
+}
+.floorRow.active .yearText {
+  color: var(--accent);
+}
+
+.durationText {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-3);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* ── Column divider ── */
+.colDivider {
+  width: 1px;
+  background: var(--border);
+  align-self: stretch;
+  margin: 18px 0;
+  flex-shrink: 0;
+}
+
+/* ── Main content ── */
+.floorContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 24px;
+  gap: 5px;
+  min-width: 0;
+}
+
+.floorOrg {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  transition: color 0.2s var(--ease);
+}
+.floorRow.active .floorOrg {
+  color: var(--accent);
+  opacity: 0.75;
+}
+
+.floorProject {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(14px, 1.4vw, 17px);
+  letter-spacing: -0.015em;
+  color: var(--text-1);
+  line-height: 1.3;
+  transition: color 0.2s var(--ease);
+}
+.floorRow.active .floorProject {
+  color: var(--accent);
+}
+
+.floorMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.floorRole {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.metaDot {
+  color: var(--text-3);
+  font-size: 10px;
+}
+
+.floorAward {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: #92400e;
+}
+
+/* ── Tags column ── */
+.tagsCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px 20px;
+  border-left: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.tag {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: color 0.2s var(--ease);
+}
+.floorRow.active .tag {
+  color: var(--accent);
+  opacity: 0.75;
+}
+
+/* ── CTA column ── */
+.ctaCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.ctaArrow {
+  font-size: 17px;
+  color: var(--text-3);
+  transition: transform 0.2s var(--ease), color 0.2s var(--ease);
+}
+.floorRow.active .ctaArrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+.ctaSoon {
+  font-size: 13px;
+  color: var(--border);
+}
+
+/* ── Accent bar ── */
+.accentBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.2s var(--ease);
+  pointer-events: none;
+}
+.floorRow.active .accentBar {
+  height: 2px;
+}
+
+/* ── Board footer ── */
+.boardFooter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border);
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-3);
+  font-style: italic;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .floorRow {
+    grid-template-columns: 56px 104px 1px 1fr 44px;
+  }
+  .tagsCol {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .floorRow {
+    grid-template-columns: 44px 88px 1px 1fr 36px;
+    min-height: 72px;
+  }
+  .periodCol {
+    padding: 0 10px;
+  }
+  .yearText {
+    font-size: 11px;
+  }
+  .floorContent {
+    padding: 12px 14px;
+  }
+  .buildingHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .floorRow {
+    grid-template-columns: 40px 1fr 36px;
+  }
+  .periodCol {
+    display: none;
+  }
+  .colDivider {
+    display: none;
+  }
+}
