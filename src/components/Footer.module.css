@@ -1,0 +1,105 @@
+.footer {
+  border-top: 1px solid var(--border);
+}
+
+.inner {
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-8);
+}
+
+/* ── Contact block ── */
+.contactBlock {
+  margin-bottom: var(--space-10);
+}
+
+.sectionLabel {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: var(--space-4);
+}
+
+.contactTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(36px, 6vw, 72px);
+  letter-spacing: -0.04em;
+  color: var(--text-1);
+  line-height: 1;
+  margin-bottom: var(--space-4);
+}
+
+.contactSub {
+  font-size: 16px;
+  color: var(--text-2);
+  margin-bottom: var(--space-7);
+  line-height: 1.7;
+}
+
+.contactRow {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.contactItemLabel {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.emailLink,
+.contactLink {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-1);
+  transition: color var(--transition);
+  min-height: 1.2em; /* reserve space while JS populates */
+}
+
+.emailLink:hover,
+.contactLink:hover {
+  color: var(--blue);
+}
+
+/* ── Bottom bar ── */
+.bottomBar {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.copy,
+.confidential,
+.built {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.confidential {
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .contactRow {
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+}

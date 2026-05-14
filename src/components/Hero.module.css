@@ -1,0 +1,290 @@
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 64px; /* navbar height */
+}
+
+.inner {
+  padding-top: var(--space-10);
+  padding-bottom: calc(var(--space-10) + 120px); /* space for stat strip */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* ── Korean name tag ── */
+.nameKo {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
+  margin-bottom: var(--space-4);
+  animation: fadeSlideUp 0.7s var(--ease) both;
+  animation-delay: 0.1s;
+}
+
+/* ── Main name ── */
+.name {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(56px, 9vw, 112px);
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  color: var(--text-1);
+  margin-bottom: var(--space-6);
+  animation: fadeSlideUp 0.7s var(--ease) both;
+  animation-delay: 0.2s;
+}
+
+/* ── Role block ── */
+.roleBlock {
+  margin-bottom: var(--space-5);
+  animation: fadeSlideUp 0.7s var(--ease) both;
+  animation-delay: 0.32s;
+}
+
+.roleMain {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(18px, 2.8vw, 30px);
+  color: var(--blue);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.roleSub {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(16px, 2.2vw, 24px);
+  color: var(--text-2);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* ── Tagline ── */
+.tagline {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.5vw, 16px);
+  font-weight: 400;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-7);
+  animation: fadeSlideUp 0.7s var(--ease) both;
+  animation-delay: 0.42s;
+}
+
+/* ── Competency chips ── */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-7);
+  animation: fadeSlideUp 0.7s var(--ease) both;
+  animation-delay: 0.52s;
+}
+
+.chip {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--blue-tag);
+  border: 1px solid rgba(26, 111, 212, 0.2);
+  border-radius: 2px;
+  padding: 4px 10px;
+}
+
+/* ── CTA buttons ── */
+.cta {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  animation: fadeSlideUp 0.7s var(--ease) both;
+  animation-delay: 0.62s;
+}
+
+.ctaPrimary {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--blue);
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.ctaPrimary:hover {
+  background: var(--blue-dim);
+  transform: translateY(-1px);
+}
+
+.ctaSecondary {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  border: 1.5px solid var(--border);
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.ctaSecondary:hover {
+  border-color: var(--text-2);
+  color: var(--text-1);
+}
+
+/* ── Scroll indicator ── */
+.scrollDown {
+  position: absolute;
+  bottom: 140px;
+  right: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  animation: fadeSlideUp 1s var(--ease) both;
+  animation-delay: 0.9s;
+}
+
+.scrollLine {
+  display: block;
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(to bottom, transparent, var(--text-3));
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+.scrollLabel {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  writing-mode: vertical-rl;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.1); }
+}
+
+/* ── Stat strip ── */
+.statStrip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--border);
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fadeSlideUp 0.7s var(--ease) both;
+  animation-delay: 0.75s;
+}
+
+.stats {
+  display: flex;
+  align-items: stretch;
+  height: 96px;
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: var(--space-4);
+}
+
+.statNum {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(22px, 3vw, 34px);
+  letter-spacing: -0.03em;
+  color: var(--blue);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+  text-align: center;
+}
+
+.statDivider {
+  width: 1px;
+  background: var(--border);
+  align-self: stretch;
+  margin: var(--space-4) 0;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .inner {
+    padding-top: var(--space-8);
+    padding-bottom: calc(var(--space-8) + 160px);
+  }
+
+  .scrollDown {
+    display: none;
+  }
+
+  .stats {
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .stat {
+    flex: 1 0 50%;
+    border-top: 1px solid var(--border);
+  }
+
+  .statDivider:nth-child(2) {
+    display: none;
+  }
+
+  .statDivider:last-of-type {
+    display: none;
+  }
+
+  .statStrip {
+    position: relative;
+    background: var(--bg-subtle);
+  }
+
+  .hero {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat {
+    flex: 1 0 100%;
+  }
+}
