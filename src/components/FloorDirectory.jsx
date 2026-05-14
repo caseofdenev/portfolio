@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styles from './FloorDirectory.module.css'
 
 const FLOORS = [
@@ -85,6 +86,7 @@ function useFadeIn() {
 }
 
 export default function FloorDirectory() {
+  const navigate = useNavigate()
   const [activeFloor, setActiveFloor] = useState(null)
   const [headerRef, headerVisible] = useFadeIn()
   const [boardRef, boardVisible] = useFadeIn()
@@ -132,7 +134,7 @@ export default function FloorDirectory() {
                 style={{ '--accent': item.accent, animationDelay: `${i * 60}ms` }}
                 onMouseEnter={() => setActiveFloor(item.floor)}
                 onMouseLeave={() => setActiveFloor(null)}
-                onClick={() => item.available && (window.location.hash = `/${item.slug}`)}
+                onClick={() => item.available && navigate(`/${item.slug}`)}
                 role={item.available ? 'link' : undefined}
                 tabIndex={item.available ? 0 : undefined}
               >
