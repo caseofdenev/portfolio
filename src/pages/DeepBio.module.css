@@ -124,75 +124,37 @@
   color: var(--text-1);
 }
 
-/* Flow diagram */
-.flowDiagram {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
+/* ── Workflow diagram: illustration + labels stacked ── */
+.workflowDiagram {
   margin-bottom: var(--space-7);
-  padding: var(--space-7) var(--space-6);
-  background: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  overflow-x: auto;
+  overflow: hidden;
+  background: var(--bg-subtle);
 }
 
-.flowStep {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
-  flex: 1;
-  min-width: 110px;
-  position: relative;
+.workflowIllustration {
+  aspect-ratio: 16 / 5;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
 }
 
-.flowNode {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: border-color 0.2s, background 0.2s;
+.workflowIllustrationImg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 0 28%;
 }
 
-.flowNodeHighlight {
-  background: var(--deepbio-light);
-  border-color: var(--deepbio);
+.workflowLabels {
+  padding: var(--space-4) var(--space-6);
 }
 
-.flowNum {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--text-2);
-}
-
-.flowNodeHighlight .flowNum {
-  color: var(--deepbio);
-}
-
-.flowLabel {
-  font-family: var(--font-body);
-  font-size: 11px;
-  color: var(--text-2);
-  text-align: center;
-  line-height: 1.4;
-  white-space: pre-line;
-}
-
-.flowArrow {
-  position: absolute;
-  top: 20px;
-  right: -12px;
-  font-size: 14px;
-  color: var(--text-3);
-  transform: translateY(-50%);
-  z-index: 1;
+.workflowLabelsImg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .workflowStatement {
@@ -468,26 +430,8 @@
     grid-template-columns: 1fr;
   }
 
-  .flowDiagram {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-4);
-  }
-
-  .flowStep {
-    flex-direction: row;
-    align-items: center;
-    min-width: unset;
-    width: 100%;
-  }
-
-  .flowLabel {
-    text-align: left;
-    white-space: normal;
-  }
-
-  .flowArrow {
-    display: none;
+  .workflowIllustration {
+    aspect-ratio: 16 / 7;
   }
 
   .caseImagesGrid {

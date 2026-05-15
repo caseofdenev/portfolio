@@ -17,53 +17,102 @@ function useFadeIn(threshold = 0.1) {
   return [ref, visible]
 }
 
+/* ─── Data ────────────────────────────────────────────── */
+
 const EDUCATION = [
   {
-    degree: 'M.S.',
-    field: 'Biomedical Engineering',
+    badge: 'M.S.',
+    period: 'Sep 2019',
+    period2: '– Aug 2021',
+    title: 'Biomedical Engineering',
     sub: 'Human Factors Engineering',
     school: 'UNIST',
-    period: 'Sep 2019 – Aug 2021',
     note: 'supervised by Prof. Dooyoung Jung, MD, PhD',
   },
   {
-    degree: 'B.S.',
-    field: 'Integrated Industrial Design Engineering',
+    badge: 'B.S.',
+    period: 'Mar 2011',
+    period2: '– Feb 2017',
+    title: 'Integrated Industrial Design Engineering',
     sub: 'Affective & Human Factors Engineering',
     school: 'UNIST',
-    period: 'Mar 2011 – Feb 2017',
     note: '',
   },
 ]
 
 const CERTIFICATIONS = [
   {
-    year: '2018',
+    badge: 'Cert',
+    period: '2018',
+    period2: '',
     title: 'Certified Ergonomics Engineer',
-    title_ko: '인간공학기사',
-    issuer: 'HRD Korea',
-    type: 'cert',
+    sub: '인간공학기사',
+    school: 'HRD Korea',
+    note: '',
   },
 ]
 
 const TRAININGS = [
   {
-    year: '2023',
+    badge: 'TR',
+    period: '2023',
+    period2: '',
     title: 'Medical Device RA Specialist Training',
-    issuer: 'NIDS (National Institute of Medical Device Safety Information)',
-    type: 'training',
+    sub: '',
+    school: 'NIDS (National Institute of Medical Device Safety Information)',
+    note: '',
   },
   {
-    year: '2023',
+    badge: 'TR',
+    period: '2023',
+    period2: '',
     title: 'SaMD GMP Essentials',
-    issuer: 'KTL (Korea Testing Laboratory)',
-    type: 'training',
+    sub: '',
+    school: 'KTL (Korea Testing Laboratory)',
+    note: '',
   },
 ]
 
+/* ─── Row sub-component ───────────────────────────────── */
+
+function CredRow({ badge, period, period2, title, sub, school, note, isLast }) {
+  return (
+    <div className={`${styles.row} ${isLast ? styles.rowLast : ''}`}>
+      <div className={styles.badge}>
+        <span className={styles.badgeText}>{badge}</span>
+      </div>
+      <div className={styles.periodCol}>
+        <span className={styles.yearText}>{period}</span>
+        {period2 && <span className={styles.durationText}>{period2}</span>}
+      </div>
+      <div className={styles.colDivider} />
+      <div className={styles.rowContent}>
+        <p className={styles.rowTitle}>{title}</p>
+        {sub && <p className={styles.rowSub}>{sub}</p>}
+        <p className={styles.rowMeta}>
+          <span className={styles.rowSchool}>{school}</span>
+        </p>
+        {note && <p className={styles.rowNote}>{note}</p>}
+      </div>
+    </div>
+  )
+}
+
+/* ─── Section header row ──────────────────────────────── */
+
+function SectionRow({ label }) {
+  return (
+    <div className={styles.sectionRow}>
+      <span className={styles.sectionRowLabel}>{label}</span>
+    </div>
+  )
+}
+
+/* ─── Main component ──────────────────────────────────── */
+
 export default function About() {
   const [headerRef, headerVisible] = useFadeIn()
-  const [contentRef, contentVisible] = useFadeIn(0.05)
+  const [boardRef, boardVisible] = useFadeIn(0.05)
 
   return (
     <section id="about" className={`section grid-bg ${styles.section}`}>
@@ -75,68 +124,38 @@ export default function About() {
           <h2 className={styles.sectionTitle}>Academic & Credentials</h2>
         </div>
 
-        <div ref={contentRef} className={`${styles.content} ${contentVisible ? styles.visible : ''}`}>
+        {/* Board */}
+        <div ref={boardRef} className={`${styles.board} ${boardVisible ? styles.visible : ''}`}>
 
-          {/* Education */}
-          <div className={styles.block}>
-            <h3 className={styles.blockTitle}>Education</h3>
-            <div className={styles.eduList}>
-              {EDUCATION.map(ed => (
-                <div key={ed.field} className={styles.eduItem}>
-                  <div className={styles.eduLeft}>
-                    <span className={styles.degree}>{ed.degree}</span>
-                  </div>
-                  <div className={styles.eduRight}>
-                    <p className={styles.eduField}>{ed.field}</p>
-                    <p className={styles.eduSub}>{ed.sub}</p>
-                    <p className={styles.eduMeta}>
-                      <span className={styles.school}>{ed.school}</span>
-                      <span className={styles.metaDot}>·</span>
-                      <span className={styles.period}>{ed.period}</span>
-                    </p>
-                    {ed.note && <p className={styles.eduNote}>{ed.note}</p>}
-                  </div>
-                </div>
-              ))}
+          {/* Board header */}
+          <div className={styles.boardHeader}>
+            <div className={styles.boardLabel}>
+              <span className={styles.boardIcon}>🎓</span>
+              Academic & Credentials
             </div>
+            <span className={styles.boardMeta}>UNIST · Seoul, Korea</span>
           </div>
 
-          {/* Certification */}
-          <div className={styles.block}>
-            <h3 className={styles.blockTitle}>Certification</h3>
-            <div className={styles.credList}>
-              {CERTIFICATIONS.map(c => (
-                <div key={c.title} className={styles.credItem}>
-                  <span className={styles.credYear}>{c.year}</span>
-                  <div className={styles.credBody}>
-                    <p className={styles.credTitle}>
-                      {c.title}
-                      {c.title_ko && <span className={styles.credTitleKo}> · {c.title_ko}</span>}
-                    </p>
-                    <p className={styles.credIssuer}>{c.issuer}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* EDUCATION */}
+          <SectionRow label="Education" />
+          {EDUCATION.map((item, i) => (
+            <CredRow key={item.title} {...item} isLast={i === EDUCATION.length - 1} />
+          ))}
 
-          {/* Training */}
-          <div className={styles.block}>
-            <h3 className={styles.blockTitle}>Training</h3>
-            <div className={styles.credList}>
-              {TRAININGS.map(t => (
-                <div key={t.title} className={styles.credItem}>
-                  <span className={styles.credYear}>{t.year}</span>
-                  <div className={styles.credBody}>
-                    <p className={styles.credTitle}>{t.title}</p>
-                    <p className={styles.credIssuer}>{t.issuer}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* CERTIFICATION */}
+          <SectionRow label="Certification" />
+          {CERTIFICATIONS.map((item, i) => (
+            <CredRow key={item.title} {...item} isLast={i === CERTIFICATIONS.length - 1} />
+          ))}
+
+          {/* TRAINING */}
+          <SectionRow label="Training" />
+          {TRAININGS.map((item, i) => (
+            <CredRow key={item.title} {...item} isLast={i === TRAININGS.length - 1} />
+          ))}
 
         </div>
+
       </div>
     </section>
   )

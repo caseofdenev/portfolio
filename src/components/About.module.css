@@ -1,8 +1,13 @@
+/* ══════════════════════════════
+   SECTION SHELL
+══════════════════════════════ */
 .section {
-  background: var(--bg-subtle);
+  background: var(--bg);
 }
 
-/* ── Header ── */
+/* ══════════════════════════════
+   HEADER
+══════════════════════════════ */
 .header {
   margin-bottom: var(--space-8);
   opacity: 0;
@@ -34,184 +39,242 @@
   line-height: 1;
 }
 
-/* ── Content ── */
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-7);
+/* ══════════════════════════════
+   BOARD (outer container)
+══════════════════════════════ */
+.board {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s var(--ease) 0.15s, transform 0.6s var(--ease) 0.15s;
 }
-.content.visible {
+.board.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── Block ── */
-.block {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
+/* ── Board header (dark bar) ── */
+.boardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: var(--text-1);
+  color: white;
+  gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
-.blockTitle {
+.boardLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-heading);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: white;
+}
+
+.boardIcon {
+  font-size: 15px;
+  opacity: 0.6;
+}
+
+.boardMeta {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.03em;
+}
+
+/* ══════════════════════════════
+   SECTION HEADER ROW
+   (EDUCATION / CERTIFICATION / TRAINING separators)
+══════════════════════════════ */
+.sectionRow {
+  display: flex;
+  align-items: center;
+  padding: 10px 24px;
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionRowLabel {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-3);
-  padding: 14px 28px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-subtle);
 }
 
-/* ── Education ── */
-.eduList {
-  display: flex;
-  flex-direction: column;
-}
-
-.eduItem {
+/* ══════════════════════════════
+   CREDENTIAL ROW
+   Columns: [badge 56px] [periodCol 120px] [colDivider 1px] [content 1fr]
+══════════════════════════════ */
+.row {
   display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 0;
-  padding: var(--space-6) var(--space-7);
+  grid-template-columns: 56px 120px 1px 1fr;
+  align-items: stretch;
+  min-height: 84px;
   border-bottom: 1px solid var(--border);
 }
-.eduItem:last-child {
+
+.rowLast {
   border-bottom: none;
 }
 
-.eduLeft {
+/* ── Badge cell (left, like floorNum) ── */
+.badge {
   display: flex;
-  align-items: flex-start;
-  padding-top: 2px;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
 }
 
-.degree {
+.badgeText {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 14px;
-  color: var(--blue);
-  letter-spacing: 0.02em;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
 }
 
-.eduRight {
+/* ── Period column ── */
+.periodCol {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 16px;
   gap: 3px;
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
-.eduField {
+.yearText {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.durationText {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-3);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* ── Column divider ── */
+.colDivider {
+  width: 1px;
+  background: var(--border);
+  align-self: stretch;
+  margin: 18px 0;
+  flex-shrink: 0;
+}
+
+/* ── Row content (main area) ── */
+.rowContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 24px;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rowTitle {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 16px;
+  font-size: clamp(14px, 1.4vw, 16px);
   letter-spacing: -0.01em;
   color: var(--text-1);
   line-height: 1.3;
 }
 
-.eduSub {
+.rowSub {
   font-family: var(--font-body);
   font-size: 13px;
   color: var(--text-2);
+  line-height: 1.4;
 }
 
-.eduMeta {
+.rowMeta {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 2px;
 }
 
-.school {
-  font-family: var(--font-heading);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-2);
-}
-
-.metaDot {
-  color: var(--border);
-  font-size: 11px;
-}
-
-.period {
+.rowSchool {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--text-3);
 }
 
-.eduNote {
+.rowNote {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-3);
   font-style: italic;
   margin-top: 2px;
+  line-height: 1.5;
 }
 
-/* ── Credentials (cert + training) ── */
-.credList {
-  display: flex;
-  flex-direction: column;
-}
-
-.credItem {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 0;
-  padding: var(--space-5) var(--space-7);
-  border-bottom: 1px solid var(--border);
-  align-items: start;
-}
-.credItem:last-child {
-  border-bottom: none;
-}
-
-.credYear {
-  font-family: var(--font-heading);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--blue);
-  letter-spacing: 0.04em;
-  padding-top: 2px;
-}
-
-.credBody {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.credTitle {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: -0.01em;
-  color: var(--text-1);
-  line-height: 1.4;
-}
-
-.credTitleKo {
-  font-family: var(--font-body);
-  font-weight: 400;
-  color: var(--text-2);
-}
-
-.credIssuer {
-  font-family: var(--font-body);
-  font-size: 12px;
-  color: var(--text-3);
-}
-
-/* ── Responsive ── */
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
 @media (max-width: 640px) {
-  .eduItem,
-  .credItem {
-    grid-template-columns: 48px 1fr;
-    padding: var(--space-5);
+  .row {
+    grid-template-columns: 44px 88px 1px 1fr;
+    min-height: 72px;
+  }
+
+  .periodCol {
+    padding: 0 10px;
+  }
+
+  .yearText {
+    font-size: 11px;
+  }
+
+  .rowContent {
+    padding: 12px 14px;
+  }
+
+  .boardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .periodCol {
+    display: none;
+  }
+
+  .colDivider {
+    display: none;
   }
 }

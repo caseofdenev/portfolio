@@ -13,14 +13,6 @@ const OVERVIEW = [
   { label: 'Period', value: 'Jul. 2021 – Jan. 2025 (3y6m)' },
 ]
 
-const WORKFLOW_STEPS = [
-  { num: '1', label: 'Tissue Biopsy &\nSlide Preparation' },
-  { num: '2', label: 'Whole-Slide\nScanning' },
-  { num: '3', label: 'Digital Slide\nReview' },
-  { num: '4', label: 'AI-Assisted\nAnalysis', highlight: true },
-  { num: '5', label: 'Pathologist Confirmation\n& Report Generation', highlight: true },
-]
-
 const WORKFLOW_POINTS = [
   'Analyzes histopathology images to precisely detect malignant cells within tissue specimens.',
   'Identifies diagnostically relevant findings to assess cancer presence and severity.',
@@ -34,7 +26,7 @@ const CASES = [
     indication: 'Prostate Biopsy',
     title: 'Re-architected an AI-to-Clinical Translation Architecture',
     subtitle: 'Cancer Diagnosis Decision Support SaMD (Prostate)',
-    images: ['deepdx-viewer.png', 'deepdx-ai-result.png'],
+    images: ['deepdx-ai-result.png', 'deepdx-viewer.png'],
     problem: [
       'Clinical measurement standards were not embedded in the AI workflow.',
       'AI outputs were disconnected from diagnostic documentation, requiring manual bridging by pathologists.',
@@ -219,18 +211,24 @@ export default function DeepBio() {
               <h2 className={styles.sectionTitle}>Clinical Workflow Context in Histopathology</h2>
             </div>
 
-            <div className={styles.flowDiagram}>
-              {WORKFLOW_STEPS.map((step, i) => (
-                <div key={step.num} className={styles.flowStep}>
-                  <div className={`${styles.flowNode} ${step.highlight ? styles.flowNodeHighlight : ''}`}>
-                    <span className={styles.flowNum}>{step.num}</span>
-                  </div>
-                  <p className={styles.flowLabel}>{step.label}</p>
-                  {i < WORKFLOW_STEPS.length - 1 && (
-                    <div className={styles.flowArrow}>→</div>
-                  )}
-                </div>
-              ))}
+            {/* Workflow diagram — illustration (top) + step labels (bottom) */}
+            <div className={styles.workflowDiagram}>
+              <div className={styles.workflowIllustration}>
+                <img
+                  src="./images/deepbio/ppt-10.svg"
+                  alt="Clinical workflow illustration"
+                  className={styles.workflowIllustrationImg}
+                  loading="lazy"
+                />
+              </div>
+              <div className={styles.workflowLabels}>
+                <img
+                  src="./images/deepbio/group22.svg"
+                  alt="Workflow step labels"
+                  className={styles.workflowLabelsImg}
+                  loading="lazy"
+                />
+              </div>
             </div>
 
             <div className={styles.workflowStatement}>
