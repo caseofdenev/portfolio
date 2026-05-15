@@ -5,8 +5,7 @@ import styles from './FloorDirectory.module.css'
 const FLOORS = [
   {
     floor: '5F',
-    year: '2025',
-    duration: '10 mos',
+    period: '2025 · 10 mos',
     org: 'CONNECTEVE Inc.',
     project: 'Knee Osteoarthritis Decision Support SaMD',
     role: 'Product Manager',
@@ -17,12 +16,11 @@ const FLOORS = [
   },
   {
     floor: '4F',
-    year: '2021 – 2025',
-    duration: '3 yrs 6 mos',
+    period: '2021 – 2025 · 3y 6m',
     org: 'DeepBio Inc.',
     project: 'Cancer Diagnosis AI SaMD × 5 Products',
-    role: 'Product Manager · UX Designer',
-    tags: ['SaMD', 'Digital Pathology', 'Regulatory', 'AI'],
+    role: 'PM · UX Designer',
+    tags: ['Digital Pathology', 'SaMD', 'Regulatory'],
     slug: 'deepbio',
     available: true,
     accent: '#6B21A8',
@@ -30,12 +28,11 @@ const FLOORS = [
   },
   {
     floor: '3F',
-    year: '2020 – 2021',
-    duration: '8 mos',
+    period: '2020 – 2021 · 8 mos',
     org: 'HAI Lab, UNIST',
     project: 'MYLE — Occupational Preventive Care Platform',
     role: 'UX Researcher · Designer',
-    tags: ['UX Design', 'Preventive Care', 'Web · App'],
+    tags: ['UX Design', 'Preventive Care'],
     slug: 'myle',
     available: false,
     accent: '#1A6FD4',
@@ -43,12 +40,11 @@ const FLOORS = [
   },
   {
     floor: '2F',
-    year: '2019',
-    duration: '6 mos',
+    period: '2019 · 6 mos',
     org: 'HAI Lab, UNIST',
     project: 'PRIVY — Clinical Voiding Sound AI App',
     role: 'UX Researcher · Designer',
-    tags: ['UX Design', 'AI', 'Mobile', 'Clinical'],
+    tags: ['UX Design', 'AI', 'Mobile'],
     slug: 'privy',
     available: false,
     accent: '#1A6FD4',
@@ -56,12 +52,11 @@ const FLOORS = [
   },
   {
     floor: 'B1',
-    year: '2015 – 2016',
-    duration: '1 yr',
+    period: '2015 – 2016 · 1 yr',
     org: 'Routin Inc.',
     project: 'UX Matchmaking Platform for Designers & SMBs',
     role: 'Founder',
-    tags: ['Startup', 'Platform', 'UX Market'],
+    tags: ['Startup', 'Platform'],
     slug: 'routin',
     available: false,
     accent: '#888888',
@@ -87,9 +82,9 @@ function useFadeIn() {
 
 export default function FloorDirectory() {
   const navigate = useNavigate()
-  const [activeFloor, setActiveFloor] = useState(null)
+  const [hoveredFloor, setHoveredFloor] = useState(null)
   const [headerRef, headerVisible] = useFadeIn()
-  const [boardRef, boardVisible] = useFadeIn()
+  const [buildingRef, buildingVisible] = useFadeIn()
 
   return (
     <section id="work" className={`section ${styles.section}`}>
@@ -99,103 +94,82 @@ export default function FloorDirectory() {
         <div ref={headerRef} className={`${styles.header} ${headerVisible ? styles.visible : ''}`}>
           <span className={styles.sectionLabel}>Floor Map</span>
           <h2 className={styles.sectionTitle}>Career Trajectory</h2>
-          <p className={styles.sectionSub}>
-            Each floor is a chapter. Navigate by role, domain, or time.
-          </p>
+          <p className={styles.sectionSub}>Each floor is a chapter. Navigate by role, domain, or time.</p>
         </div>
 
-        {/* Building board */}
-        <div ref={boardRef} className={`${styles.board} ${boardVisible ? styles.visible : ''}`}>
+        {/* Building */}
+        <div ref={buildingRef} className={`${styles.building} ${buildingVisible ? styles.visible : ''}`}>
+
+          {/* Roof beam */}
+          <div className={styles.buildingRoof} />
 
           {/* Building header */}
           <div className={styles.buildingHeader}>
-            <div className={styles.buildingLabel}>
-              <span className={styles.buildingIcon}>⊞</span>
-              <span>Clinical AI Career Building</span>
-            </div>
-            <div className={styles.buildingMeta}>
-              <span>SaMD PM · UX Designer · Founder</span>
-              <span className={styles.metaDot}>·</span>
-              <span>2015 – present</span>
-            </div>
+            <span className={styles.buildingLabel}>Clinical AI Career Building</span>
+            <span className={styles.buildingMeta}>SaMD PM · UX Designer · Founder · 2015 – present</span>
           </div>
 
-          {/* Floor rows */}
-          <div className={styles.floors}>
-            {FLOORS.map((item, i) => (
+          {/* Floors */}
+          {FLOORS.map((item) => {
+            const isHovered = hoveredFloor === item.floor
+            return (
               <div
                 key={item.floor}
-                className={`
-                  ${styles.floorRow}
-                  ${activeFloor === item.floor ? styles.active : ''}
-                  ${item.basement ? styles.basementRow : ''}
-                  ${item.featured ? styles.featuredRow : ''}
-                `}
-                style={{ '--accent': item.accent, animationDelay: `${i * 60}ms` }}
-                onMouseEnter={() => setActiveFloor(item.floor)}
-                onMouseLeave={() => setActiveFloor(null)}
+                className={`${styles.floor} ${item.basement ? styles.basement : ''} ${item.featured ? styles.featured : ''}`}
+                style={{ '--accent': item.accent }}
+                onMouseEnter={() => setHoveredFloor(item.floor)}
+                onMouseLeave={() => setHoveredFloor(null)}
                 onClick={() => item.available && navigate(`/${item.slug}`)}
                 role={item.available ? 'link' : undefined}
                 tabIndex={item.available ? 0 : undefined}
+                data-hovered={isHovered || undefined}
               >
-                {/* Floor number */}
+                {/* Floor number column */}
                 <div className={styles.floorNum}>
                   <span className={styles.floorNumText}>{item.floor}</span>
                 </div>
 
-                {/* Period column */}
-                <div className={styles.periodCol}>
-                  <span className={styles.yearText}>{item.year}</span>
-                  <span className={styles.durationText}>{item.duration}</span>
-                </div>
+                {/* Accent bar */}
+                <div className={styles.accentBar} />
 
-                {/* Vertical divider */}
-                <div className={styles.colDivider} />
-
-                {/* Main content */}
-                <div className={styles.floorContent}>
-                  <div className={styles.floorOrg}>{item.org}</div>
-                  <div className={styles.floorProject}>{item.project}</div>
-                  <div className={styles.floorMeta}>
-                    <span className={styles.floorRole}>{item.role}</span>
+                {/* Card content */}
+                <div className={styles.cardContent}>
+                  <div className={styles.cardHead}>
+                    <div className={styles.cardMeta}>
+                      <span className={styles.cardOrg}>{item.org}</span>
+                      <span className={styles.cardSep}>·</span>
+                      <span className={styles.cardPeriod}>{item.period}</span>
+                    </div>
+                    {item.available && (
+                      <span className={styles.ctaArrow}>→</span>
+                    )}
+                  </div>
+                  <p className={styles.cardProject}>{item.project}</p>
+                  <p className={styles.cardRole}>{item.role}</p>
+                  <div className={styles.cardBottom}>
+                    <div className={styles.cardTags}>
+                      {item.tags.map(tag => (
+                        <span key={tag} className={styles.tag}>{tag}</span>
+                      ))}
+                    </div>
                     {item.award && (
-                      <>
-                        <span className={styles.metaDot}>·</span>
-                        <span className={styles.floorAward}>◈ {item.award}</span>
-                      </>
+                      <span className={styles.awardTag}>◈ {item.award}</span>
                     )}
                   </div>
                 </div>
-
-                {/* Tags column */}
-                <div className={styles.tagsCol}>
-                  {item.tags.map(tag => (
-                    <span key={tag} className={styles.tag}>{tag}</span>
-                  ))}
-                </div>
-
-                {/* CTA column */}
-                <div className={styles.ctaCol}>
-                  {item.available
-                    ? <span className={styles.ctaArrow}>→</span>
-                    : <span className={styles.ctaSoon}>–</span>
-                  }
-                </div>
-
-                {/* Active accent bar */}
-                <div className={styles.accentBar} />
               </div>
-            ))}
-          </div>
+            )
+          })}
 
-          {/* Board footer */}
+          {/* Base beam */}
+          <div className={styles.buildingBase} />
+
+          {/* Footer */}
           <div className={styles.boardFooter}>
-            <span>→ indicates available case study</span>
-            <span className={styles.metaDot}>·</span>
-            <span>Some materials have been anonymized for confidentiality.</span>
+            → indicates available case study · Some materials have been anonymized for confidentiality.
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   )

@@ -32,22 +32,6 @@ export default function Hero() {
 
         {/* Tagline */}
         <p className={styles.tagline}>Architect of AI Workflows in Healthcare</p>
-
-        {/* Competency chips */}
-        <div className={styles.chips}>
-          {[
-            'AI SaMD', 'Digital Pathology', 'Orthopedic AI',
-            'Clinical Workflow', 'Human Factors', 'Regulatory-Aware',
-          ].map(chip => (
-            <span key={chip} className={styles.chip}>{chip}</span>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className={styles.cta}>
-          <a href="#work" className={styles.ctaPrimary}>View Work</a>
-          <a href="#about" className={styles.ctaSecondary}>About Me</a>
-        </div>
       </div>
 
       {/* Scroll indicator */}

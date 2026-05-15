@@ -211,24 +211,14 @@ export default function DeepBio() {
               <h2 className={styles.sectionTitle}>Clinical Workflow Context in Histopathology</h2>
             </div>
 
-            {/* Workflow diagram — illustration (top) + step labels (bottom) */}
+            {/* Workflow diagram — cropped illustration */}
             <div className={styles.workflowDiagram}>
-              <div className={styles.workflowIllustration}>
-                <img
-                  src="./images/deepbio/ppt-10.svg"
-                  alt="Clinical workflow illustration"
-                  className={styles.workflowIllustrationImg}
-                  loading="lazy"
-                />
-              </div>
-              <div className={styles.workflowLabels}>
-                <img
-                  src="./images/deepbio/group22.svg"
-                  alt="Workflow step labels"
-                  className={styles.workflowLabelsImg}
-                  loading="lazy"
-                />
-              </div>
+              <img
+                src="./images/deepbio/ppt-10.svg"
+                alt="Clinical workflow illustration"
+                className={styles.workflowDiagramImg}
+                loading="lazy"
+              />
             </div>
 
             <div className={styles.workflowStatement}>

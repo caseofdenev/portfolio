@@ -10,7 +10,7 @@
 
 .inner {
   padding-top: var(--space-10);
-  padding-bottom: calc(var(--space-10) + 120px); /* space for stat strip */
+  padding-bottom: calc(var(--space-9) + 120px); /* space for stat strip */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -33,7 +33,7 @@
 .name {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: clamp(56px, 9vw, 112px);
+  font-size: clamp(48px, 8vw, 96px);
   letter-spacing: -0.035em;
   line-height: 0.92;
   color: var(--text-1);
@@ -70,81 +70,17 @@
 /* ── Tagline ── */
 .tagline {
   font-family: var(--font-body);
-  font-size: clamp(13px, 1.5vw, 16px);
+  font-size: clamp(14px, 1.5vw, 17px);
   font-weight: 400;
-  color: var(--text-3);
-  letter-spacing: 0.04em;
+  color: var(--text-2);
+  font-style: italic;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
   margin-bottom: var(--space-7);
+  padding-left: 16px;
+  border-left: 2px solid var(--blue);
   animation: fadeSlideUp 0.7s var(--ease) both;
   animation-delay: 0.42s;
-}
-
-/* ── Competency chips ── */
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-bottom: var(--space-7);
-  animation: fadeSlideUp 0.7s var(--ease) both;
-  animation-delay: 0.52s;
-}
-
-.chip {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--blue);
-  background: var(--blue-tag);
-  border: 1px solid rgba(26, 111, 212, 0.2);
-  border-radius: 2px;
-  padding: 4px 10px;
-}
-
-/* ── CTA buttons ── */
-.cta {
-  display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-  animation: fadeSlideUp 0.7s var(--ease) both;
-  animation-delay: 0.62s;
-}
-
-.ctaPrimary {
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--blue);
-  padding: 12px 28px;
-  border-radius: var(--radius);
-  transition: background var(--transition), transform var(--transition);
-}
-
-.ctaPrimary:hover {
-  background: var(--blue-dim);
-  transform: translateY(-1px);
-}
-
-.ctaSecondary {
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-2);
-  border: 1.5px solid var(--border);
-  padding: 12px 28px;
-  border-radius: var(--radius);
-  transition: border-color var(--transition), color var(--transition);
-}
-
-.ctaSecondary:hover {
-  border-color: var(--text-2);
-  color: var(--text-1);
 }
 
 /* ── Scroll indicator ── */

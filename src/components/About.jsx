@@ -127,15 +127,6 @@ export default function About() {
         {/* Board */}
         <div ref={boardRef} className={`${styles.board} ${boardVisible ? styles.visible : ''}`}>
 
-          {/* Board header */}
-          <div className={styles.boardHeader}>
-            <div className={styles.boardLabel}>
-              <span className={styles.boardIcon}>🎓</span>
-              Academic & Credentials
-            </div>
-            <span className={styles.boardMeta}>UNIST · Seoul, Korea</span>
-          </div>
-
           {/* EDUCATION */}
           <SectionRow label="Education" />
           {EDUCATION.map((item, i) => (
